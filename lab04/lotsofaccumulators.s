@@ -16,6 +16,9 @@
 #We have provided five versions of accumulator. Only one is correct, though all five pass the sanity test above.
 
 accumulatorone:
+	addi sp,sp,-4
+	sw s0,0(sp)
+
 	lw s0 0(a0)
 	beq s0 x0 Endone
 	addi sp sp -8
@@ -23,17 +26,22 @@ accumulatorone:
 	sw ra 4(sp)
 	addi a0 a0 4
 	jal accumulatorone
-	lw t1 0(sp)
+	lw s0 0(sp)
 	lw ra 4(sp)
 	addi sp sp 8
-	add a0 a0 t1
+	add a0 a0 s0
+
+	lw s0,0(sp)
+	addi sp,sp,4
 	jr ra
 Endone:
+	lw s0,0(sp)
+	addi sp,sp,4
 	li a0 0
 	jr ra
 
 accumulatortwo:
-	addi sp sp 4
+	addi sp sp -4
 	sw s0 0(sp)
 	li t0 0
 	li s0 0
@@ -48,7 +56,7 @@ Looptwo:
 Endtwo:
 	mv a0 s0
 	lw s0 0(sp)
-	addi sp sp -4
+	addi sp sp 4
 	jr ra
 
 accumulatorthree:
@@ -64,7 +72,7 @@ accumulatorthree:
 TailCasethree:
 	mv a0 x0
 	j Epiloguethree
-Epiloguethree:	
+Epiloguethree:
 	lw s0 0(sp)
 	lw ra 4(sp)
 	addi sp sp 8
