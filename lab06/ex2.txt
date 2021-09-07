@@ -1,0 +1,1 @@
+clk-to-q + mul + setup  10 + 60 + 10
