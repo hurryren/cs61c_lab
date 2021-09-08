@@ -40,6 +40,7 @@ void multMat3( int n, float *A, float *B, float *C ) {
                 C[i+j*n] += A[i+k*n]*B[k+j*n];
 }
 
+// most fast
 void multMat4( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is jki loop order. */
